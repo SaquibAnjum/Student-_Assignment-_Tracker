@@ -3,11 +3,14 @@ from pymongo import MongoClient
 from bson import ObjectId
 from bson.errors import InvalidId
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 app = Flask(__name__)
 
-client = MongoClient(
-    "mongodb+srv://saquib1312_db_user:rYVgprRS2bVXglrf@cluster0.qzbex4i.mongodb.net/?appName=Cluster0"
-)
+client = MongoClient(os.getenv("MONGO_URI"))
 
 db = client["student_db"]
 students_collection = db["students"]
